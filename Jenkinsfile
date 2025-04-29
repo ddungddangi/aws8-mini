@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Git Clone') {
             steps {
-                git branch: 'main', credentialsId: 'github-credentials', url: 'https://github.com/ddungddangi/kafka.git'
+                git branch: 'main', credentialsId: 'github-credentials', url: 'https://github.com/ddungddangi/aws8-mini.git'
             }
         }
 
