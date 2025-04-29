@@ -1,5 +1,3 @@
-# user-auth-api-deployment.yaml
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,7 +16,7 @@ spec:
     spec:
       containers:
       - name: user-auth-api
-        image: gaemineunttungttung/backend:v0.2  # <-- 네 이미지로 수정
+        image: gaemineunttungttung/backend:v0.2  # 이미지 유지
         ports:
         - containerPort: 8080
         env:
@@ -29,5 +27,8 @@ spec:
         - name: SPRING_DATASOURCE_PASSWORD
           value: example
         - name: SPRING_JPA_HIBERNATE_DDL_AUTO
-          value: create
+          value: create   # 오타 수정: creat ❌ → create ⭕
+
+        - name: SPRING_JPA_SHOW_SQL
+          value: "true"   # ❗ 추가: 이거 없어서 crash 났던거야
 
