@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: user-auth-api
-        image: gaemineunttungttung/backend:latest  # <-- 네 이미지로 수정
+        image: gaemineunttungttung/backend:v0.2  # <-- 네 이미지로 수정
         ports:
         - containerPort: 8080
         env:
