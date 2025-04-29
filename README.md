@@ -1,1 +1,1 @@
-gitih hit adasdasi
+hit :gitih hit adasdasi
