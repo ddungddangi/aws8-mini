@@ -13,14 +13,17 @@ pipeline {
     stages {
         stage('Git Clone') {
             steps {
-                git branch: 'main', credentialsId: 'github-credentials', url: 'https://github.com/ddungddangi/kafka.git'
+                git branch: 'master', credentialsId: 'github-credentials', url: 'https://github.com/ddungddangi/aws8-mini'
             }
         }
 
         stage('Build Backend Image') {
             steps {
-                dir('backend') {
-                    sh 'docker build -t $BACKEND_IMAGE .'
+                dir('chat-service') {
+                    sh '''
+                        echo "Building Backend Docker Image..."
+                        docker build -t $BACKEND_IMAGE .
+                    '''
                 }
             }
         }
@@ -28,15 +31,21 @@ pipeline {
         stage('Push Backend Image') {
             steps {
                 withDockerRegistry(credentialsId: 'docker-hub-credentials', url: '') {
-                    sh 'docker push $BACKEND_IMAGE'
+                    sh '''
+                        echo "Pushing Backend Docker Image..."
+                        docker push $BACKEND_IMAGE
+                    '''
                 }
             }
         }
 
         stage('Build Frontend Image') {
             steps {
-                dir('frontend') {
-                    sh 'docker build -t $FRONTEND_IMAGE .'
+                dir('chat-service-front') {
+                    sh '''
+                        echo "Building Frontend Docker Image..."
+                        docker build -t $FRONTEND_IMAGE .
+                    '''
                 }
             }
         }
@@ -44,7 +53,10 @@ pipeline {
         stage('Push Frontend Image') {
             steps {
                 withDockerRegistry(credentialsId: 'docker-hub-credentials', url: '') {
-                    sh 'docker push $FRONTEND_IMAGE'
+                    sh '''
+                        echo "Pushing Frontend Docker Image..."
+                        docker push $FRONTEND_IMAGE
+                    '''
                 }
             }
         }
