@@ -39,7 +39,7 @@ function LoginPage() {
 
   return (
     <div style={styles.container}>
-      <h2>로그인</h2>
+      <h2>로그인 page</h2>
       <form onSubmit={handleLogin} style={styles.form}>
         <input
           style={styles.input}
